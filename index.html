@@ -107,6 +107,7 @@
         "@graph": [
           {
             "@type": "LocalBusiness",
+            "@id": "https://paginawebeconomica.org/#localbusiness",
             "name": "PaginaWebEconomica.org",
             "alternateName": "Páginas Web Profesionales Colombia",
             "description": "Agencia de diseño web especializada en páginas web profesionales y personalizadas para emprendedores y pequeñas empresas en Colombia y Latinoamérica.",
@@ -114,7 +115,6 @@
               "https://paginawebeconomica.org/img/og-imagen.jpg",
               "https://paginawebeconomica.org/img/logo.png"
             ],
-            "@id": "https://paginawebeconomica.org/#localbusiness",
             "url": "https://paginawebeconomica.org",
             "telephone": "+57 305 411 5138",
             "email": "info@paginawebeconomica.org",
@@ -143,95 +143,60 @@
             },
             "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-13:00"],
             "sameAs": [
-              "https://www.facebook.com/paginawebeconomica/",
-              "https://www.instagram.com/paginawebeconomica/",
-              "https://www.linkedin.com/company/paginawebeconomica",
-              "https://twitter.com/paginawebeconomica"
+              "https://www.facebook.com/sormenak/",
+              "https://www.linkedin.com/in/sormenak-marketing-digital/",
+              "https://x.com/sormenak"
             ],
             "areaServed": [
               { "@type": "City", "name": "Bogotá", "addressCountry": "CO" },
               { "@type": "City", "name": "Medellín", "addressCountry": "CO" },
-              { "@type": "City", "name": "Cali", "addressCountry": "CO" },
-              {
-                "@type": "City",
-                "name": "Barranquilla",
-                "addressCountry": "CO"
-              },
-              { "@type": "City", "name": "Cartagena", "addressCountry": "CO" },
-              {
-                "@type": "City",
-                "name": "Bucaramanga",
-                "addressCountry": "CO"
-              },
-              { "@type": "Country", "name": "Colombia" },
-              { "@type": "Country", "name": "México" },
-              { "@type": "Country", "name": "Perú" },
-              { "@type": "Country", "name": "Ecuador" }
+              { "@type": "Country", "name": "Colombia" }
             ],
-            "serviceType": [
-              "Diseño web",
-              "Desarrollo web",
-              "SEO local",
-              "Marketing digital",
-              "Hosting web",
-              "Mantenimiento web"
-            ],
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Página web profesional para negocios",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Página Web Profesional One-Page",
-                    "description": "Página web profesional completa para negocios locales. Incluye diseño, dominio, hosting, SSL, correo corporativo gratis y integración con WhatsApp. Lista en 5-7 días."
-                  },
-                  "price": "300000",
-                  "priceCurrency": "COP",
-                  "availability": "https://schema.org/InStock",
-                  "validFrom": "2024-01-01",
-                  "areaServed": "Colombia"
-                }
-              ]
-            },
             "founder": {
               "@type": "Person",
-              "name": "Jhonatan Gaitán"
+              "name": "Alvaro Rubio"
             },
             "foundingDate": "2020",
             "slogan": "Páginas web que traen clientes, no solo diseño"
           },
           {
-            "@type": "Organization",
-            "@id": "https://paginawebeconomica.org",
-            "name": "PaginaWebEconomica.org",
-            "url": "https://paginawebeconomica.org",
-            "logo": "https://paginawebeconomica.org/img/logo.svg",
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "telephone": "+57-305-411-5138",
-              "contactType": "customer service",
-              "areaServed": "CO",
-              "availableLanguage": "Spanish"
-            },
-            "address": {
-              "@type": "PostalAddress",
-              "addressCountry": "CO",
-              "addressLocality": "Bogotá"
-            }
-          },
-          {
             "@type": "Service",
             "name": "Diseño de Página Web Profesional en Colombia",
+            "serviceType": "Diseño Web",
             "provider": {
-              "@id": "https://paginawebeconomica.org"
+              "@id": "https://paginawebeconomica.org/#localbusiness"
             },
+            "description": "Diseño de página web profesional One-Page para negocios. Incluye dominio, hosting y SSL.",
             "offers": {
               "@type": "Offer",
               "price": "300000",
               "priceCurrency": "COP",
-              "availability": "https://schema.org/InStock"
+              "priceValidUntil": "2026-12-31",
+              "availability": "https://schema.org/InStock",
+              "url": "https://paginawebeconomica.org",
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "CO",
+                "returnPolicyCategory": "https://schema.org/UnspecifiedReturnPeriod",
+                "merchantReturnLink": "https://paginawebeconomica.org"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "value": "0",
+                  "currency": "COP"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 7,
+                    "unitCode": "DAY"
+                  }
+                }
+              }
             },
             "aggregateRating": {
               "@type": "AggregateRating",
@@ -251,7 +216,7 @@
                 "author": { "@type": "Person", "name": "Diana Sofia R." },
                 "reviewRating": { "@type": "Rating", "ratingValue": "5" },
                 "datePublished": "2026-01-25",
-                "reviewBody": "Necesitaba algo rápido para mi tienda de postres. En 5 días ya tenía mi catálogo montado. Me gustó mucho que no cobran mensualidades raras."
+                "reviewBody": "Necesitaba algo rápido para mi tienda de postres. En 5 días ya tenía mi catálogo montado."
               }
             ]
           },
@@ -260,26 +225,10 @@
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "¿Debo pagar mensualidades por el mantenimiento web o la página es de mi propiedad?",
+                "name": "¿Debo pagar mensualidades?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "No. Nuestro modelo de desarrollo web es de pago único. Al contratar, obtienes el 100% de la propiedad digital sobre los archivos y el código de tu sitio. Te bonificamos el primer año de Alojamiento Web (Hosting) y registro de Dominio."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Esta página web funciona como Tienda Virtual (E-commerce) para recibir pedidos?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "La plataforma base ($300.000 COP) está diseñada como una Landing Page informativa. Si necesitas funciones de Comercio Electrónico, puedes agregar nuestro módulo de Catálogo Digital (+$150.000 COP) con sistema de pedidos directo a WhatsApp."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Qué hago si no tengo Identidad Corporativa (logo) ni fotografías profesionales?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Utilizamos recursos de bancos de imágenes en alta resolución adaptados a tu sector sin costo adicional. Si no tienes logotipo, diseñaremos un encabezado tipográfico o puedes añadir nuestro servicio de Identidad Visual por solo $80.000 COP."
+                  "text": "No. Nuestro modelo es de pago único. Al contratar, obtienes el 100% de la propiedad digital."
                 }
               }
             ]
