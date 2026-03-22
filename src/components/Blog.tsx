@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import { ExternalLink, Calendar, ArrowRight } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { ExternalLink, Calendar, ArrowRight } from "lucide-react";
 
+// --- Interfaces ---
 interface WordPressPost {
   id: number;
   title: { rendered: string };
@@ -8,122 +9,123 @@ interface WordPressPost {
   link: string;
   date: string;
   _embedded?: {
-    'wp:featuredmedia'?: Array<{
+    "wp:featuredmedia"?: Array<{
       source_url: string;
       alt_text: string;
     }>;
   };
 }
 
+// --- Configuración ---
 const API_URL =
-  'https://paginawebeconomica.org/blog/wp-json/wp/v2/posts?per_page=5&_embed';
+  "https://paginawebeconomica.org/blog/wp-json/wp/v2/posts?per_page=3&_embed";
 
-// Fallback seguro con URLs reales
 const FALLBACK_POSTS: WordPressPost[] = [
   {
     id: 1,
-    title: { rendered: 'Cómo atraer clientes con tu página web' },
+    title: { rendered: "Cómo atraer clientes con tu página web" },
     excerpt: {
       rendered:
-        '<p>Descubre cómo una web optimizada puede traerte clientes todos los días automáticamente.</p>',
+        "<p>Descubre cómo una web optimizada puede traerte clientes todos los días automáticamente.</p>",
     },
-    link: 'https://paginawebeconomica.org/blog/como-atraer-clientes-web',
+    link: "https://paginawebeconomica.org/blog/como-atraer-clientes-web",
     date: new Date().toISOString(),
   },
   {
     id: 2,
-    title: { rendered: 'Estrategias de SEO local para negocios' },
+    title: { rendered: "Estrategias de SEO local para negocios" },
     excerpt: {
       rendered:
-        '<p>Aprende cómo aparecer en Google en tu ciudad y atraer más clientes a tu negocio.</p>',
+        "<p>Aprende cómo aparecer en Google en tu ciudad y atraer más clientes a tu negocio.</p>",
     },
-    link: 'https://paginawebeconomica.org/blog/estrategias-seo-local',
+    link: "https://paginawebeconomica.org/blog/estrategias-seo-local",
     date: new Date(Date.now() - 86400000).toISOString(),
   },
   {
     id: 3,
-    title: { rendered: 'Elementos esenciales de una web profesional' },
+    title: { rendered: "Elementos esenciales de una web profesional" },
     excerpt: {
       rendered:
-        '<p>Todo lo que debe tener tu web para convertir visitantes en clientes.</p>',
+        "<p>Todo lo que debe tener tu web para convertir visitantes en clientes.</p>",
     },
-    link: 'https://paginawebeconomica.org/blog/elementos-web-profesional',
+    link: "https://paginawebeconomica.org/blog/elementos-web-profesional",
     date: new Date(Date.now() - 172800000).toISOString(),
   },
 ];
 
+// --- Helpers ---
 function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString('es-CO', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  try {
+    return new Date(dateString).toLocaleDateString("es-CO", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch (e) {
+    return "Reciente";
+  }
 }
 
-function sanitize(html: string) {
+// Limpia etiquetas HTML de forma segura sin depender del DOM (SSR compatible)
+function cleanHtml(html: string) {
   return html
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/on\w+="[^"]*"/gi, '')
-    .replace(/on\w+='[^']*'/gi, '');
+    .replace(/<[^>]*>?/gm, "") // Elimina etiquetas HTML
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#8211;/g, "-")
+    .replace(/&#8217;/g, "'")
+    .trim();
 }
 
-function truncateExcerpt(html: string, maxLength = 120) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  const text = tmp.textContent || tmp.innerText || '';
-  const truncated = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-  return `<p>${truncated}</p>`;
+function truncateText(text: string, maxLength = 120) {
+  return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 }
 
-interface PostCardProps {
-  post: WordPressPost;
-}
-
-const PostCard = ({ post }: PostCardProps) => {
-  const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+// --- Componentes Secundarios ---
+const PostCard = ({ post }: { post: WordPressPost }) => {
+  const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
   const imageAlt =
-    post._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'Imagen del artículo';
+    post._embedded?.["wp:featuredmedia"]?.[0]?.alt_text || post.title.rendered;
 
   return (
-    <article className="bg-slate-900/60 border border-emerald-500/20 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition-all duration-300 flex flex-col">
-      {featuredImage && (
+    <article className="bg-slate-900/60 border border-emerald-500/20 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition-all duration-300 flex flex-col h-full">
+      {featuredImage ? (
         <div className="aspect-video overflow-hidden bg-slate-800">
           <img
             src={featuredImage}
             alt={imageAlt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             loading="lazy"
           />
+        </div>
+      ) : (
+        <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+          <span className="text-slate-500 text-sm">Sin imagen</span>
         </div>
       )}
 
       <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center gap-2 text-slate-400 text-sm mb-3">
-          <Calendar className="h-4 w-4" aria-hidden="true" />
+        <div className="flex items-center gap-2 text-slate-400 text-xs mb-3">
+          <Calendar className="h-3.5 w-3.5" />
           <time dateTime={post.date}>{formatDate(post.date)}</time>
         </div>
 
         <h3
-          className="text-xl font-bold text-white mb-3"
-          dangerouslySetInnerHTML={{ __html: sanitize(post.title.rendered) }}
+          className="text-xl font-bold text-white mb-3 line-clamp-2"
+          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         />
 
-        <div
-          className="text-slate-300 text-sm mb-4 flex-1"
-          dangerouslySetInnerHTML={{
-            __html: sanitize(truncateExcerpt(post.excerpt.rendered, 140)),
-          }}
-        />
+        <p className="text-slate-300 text-sm mb-6 flex-1 line-clamp-3">
+          {truncateText(cleanHtml(post.excerpt.rendered), 140)}
+        </p>
 
         <a
           href={post.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors mt-auto focus-ring rounded-lg px-2 py-1 -ml-2"
-          aria-label="Leer artículo completo - abre en nueva ventana"
+          className="inline-flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors mt-auto text-sm group"
         >
           Leer artículo
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
         </a>
       </div>
     </article>
@@ -131,102 +133,85 @@ const PostCard = ({ post }: PostCardProps) => {
 };
 
 const LoadingSkeleton = () => (
-  <section className="py-16 md:py-24 bg-black" aria-label="Cargando artículos del blog">
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <div className="h-12 w-64 bg-slate-800 rounded animate-pulse mx-auto mb-4" />
-        <div className="h-6 w-96 bg-slate-800/60 rounded animate-pulse mx-auto" />
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {[1, 2, 3].map((i) => (
+      <div
+        key={i}
+        className="bg-slate-900/60 rounded-2xl overflow-hidden border border-white/5"
+      >
+        <div className="aspect-video bg-slate-800 animate-pulse" />
+        <div className="p-6 space-y-4">
+          <div className="h-3 w-24 bg-slate-800 rounded animate-pulse" />
+          <div className="h-6 w-full bg-slate-800 rounded animate-pulse" />
+          <div className="h-4 w-3/4 bg-slate-800/60 rounded animate-pulse" />
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="bg-slate-900/60 rounded-2xl overflow-hidden" aria-hidden="true">
-            <div className="aspect-video bg-slate-800 animate-pulse" />
-            <div className="p-6 space-y-3">
-              <div className="h-4 w-24 bg-slate-800 rounded animate-pulse" />
-              <div className="h-6 w-full bg-slate-800 rounded animate-pulse" />
-              <div className="h-4 w-full bg-slate-800/60 rounded animate-pulse" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+    ))}
+  </div>
 );
 
+// --- Componente Principal ---
 const BlogSection = () => {
-  const [posts, setPosts] = useState<WordPressPost[]>(FALLBACK_POSTS);
+  const [posts, setPosts] = useState<WordPressPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const controller = new AbortController();
-
     const fetchPosts = async () => {
       try {
-        const response = await fetch(API_URL, {
-          signal: controller.signal,
-          headers: {
-            'Accept': 'application/json',
-          },
-        });
+        // Agregamos un timestamp para evitar caché y forzar datos frescos
+        const response = await fetch(`${API_URL}&t=${Date.now()}`);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}`);
-        }
+        if (!response.ok) throw new Error("Error al conectar con la API");
 
-        const contentType = response.headers.get('content-type');
-        if (!contentType?.includes('application/json')) {
-          throw new Error('La respuesta no es JSON');
-        }
-
-        const data: WordPressPost[] = await response.json();
+        const data = await response.json();
 
         if (Array.isArray(data) && data.length > 0) {
           setPosts(data);
+        } else {
+          setPosts(FALLBACK_POSTS);
         }
       } catch (err) {
-        if ((err as Error).name !== 'AbortError') {
-          console.error('Error al cargar posts de WordPress:', err);
-        }
+        console.warn("API Error, usando Fallbacks:", err);
+        setPosts(FALLBACK_POSTS);
       } finally {
         setLoading(false);
       }
     };
 
     fetchPosts();
-    return () => controller.abort();
   }, []);
 
-  if (loading) return <LoadingSkeleton />;
-
   return (
-    <section className="py-16 md:py-24 bg-black" aria-labelledby="blog-heading">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 id="blog-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-            Recursos y Guías
-            <span className="block mt-2 text-emerald-400">para tu negocio</span>
+    <section className="py-20 bg-black">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            Recursos y <span className="text-emerald-400">Guías</span>
           </h2>
-          <p className="text-lg md:text-xl text-slate-300">
-            Aprende cómo hacer crecer tu presencia digital
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            Consejos prácticos para mejorar tu presencia digital y vender más.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
+        {loading ? (
+          <LoadingSkeleton />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+        )}
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <a
             href="https://paginawebeconomica.org/blog"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-4 border border-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-500/10 transition-colors focus-ring"
-            aria-label="Ver todos los artículos del blog - abre en nueva ventana"
+            className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-emerald-500 text-emerald-400 font-bold rounded-full hover:bg-emerald-500 hover:text-black transition-all duration-300"
           >
-            <ExternalLink className="mr-2 h-5 w-5" aria-hidden="true" />
-            Ver todos los artículos
+            <ExternalLink className="mr-2 h-5 w-5" />
+            Ir al Blog Completo
           </a>
         </div>
       </div>
