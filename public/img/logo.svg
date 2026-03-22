@@ -1,0 +1,25 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgb(245, 158, 11);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(251, 191, 36);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <g id="isotipo">
+    <path d="M 15 10 L 5 20 L 15 30" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M 25 10 L 35 20 L 25 30" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="20" cy="45" r="2.5" fill="url(#logoGradient)"/>
+  </g>
+
+  <g id="texto">
+    <text x="45" y="25" font-family="'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="white">
+      Pagina<tspan fill="url(#logoGradient)">Web</tspan>
+    </text>
+    <text x="45" y="42" font-family="'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#94a3b8">
+      Economica.org
+    </text>
+  </g>
+
+  <rect x="42" y="28" width="3" height="3" fill="url(#logoGradient)" rx="1"/>
+</svg>
