@@ -104,135 +104,193 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "LocalBusiness",
-            "@id": "https://paginawebeconomica.org/#localbusiness",
-            "name": "PaginaWebEconomica.org",
-            "alternateName": "Páginas Web Profesionales Colombia",
-            "description": "Agencia de diseño web especializada en páginas web profesionales y personalizadas para emprendedores y pequeñas empresas en Colombia y Latinoamérica.",
-            "image": [
-              "https://paginawebeconomica.org/img/og-imagen.jpg",
-              "https://paginawebeconomica.org/img/logo.png"
-            ],
-            "url": "https://paginawebeconomica.org",
-            "telephone": "+57 305 411 5138",
-            "email": "info@paginawebeconomica.org",
-            "priceRange": "$300.000 COP",
-            "paymentAccepted": "Efectivo, Transferencia Bancaria, PSE, Nequi, Daviplata",
-            "currenciesAccepted": "COP, USD, MXN, PEN, EUR",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Servicio online y presencial",
-              "addressLocality": "Bogotá",
-              "addressRegion": "Cundinamarca",
-              "postalCode": "110231",
-              "addressCountry": "CO"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 4.711,
-              "longitude": -74.0721
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "6",
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-13:00"],
-            "sameAs": [
-              "https://www.facebook.com/sormenak/",
-              "https://www.linkedin.com/in/sormenak-marketing-digital/",
-              "https://x.com/sormenak"
-            ],
-            "areaServed": [
-              { "@type": "City", "name": "Bogotá", "addressCountry": "CO" },
-              { "@type": "City", "name": "Medellín", "addressCountry": "CO" },
-              { "@type": "Country", "name": "Colombia" }
-            ],
-            "founder": {
-              "@type": "Person",
-              "name": "Alvaro Rubio"
-            },
-            "foundingDate": "2020",
-            "slogan": "Páginas web que traen clientes, no solo diseño"
+        "@type": "LocalBusiness",
+        "@id": "https://paginawebeconomica.org/#localbusiness",
+        "name": "PaginaWebEconomica.org",
+        "alternateName": "Diseño de Página Web Profesional en Colombia",
+        "description": "Diseño de páginas web profesionales en Colombia por $300.000 COP. Pago único, incluye dominio y hosting por 1 año. Ideal para restaurantes, barberías y negocios locales.",
+        "image": [
+          "https://paginawebeconomica.org/img/og-imagen.jpg",
+          "https://paginawebeconomica.org/img/logo.png"
+        ],
+        "url": "https://paginawebeconomica.org/",
+        "telephone": "+57 305 411 5138",
+        "priceRange": "$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Servicio online y presencial",
+          "addressLocality": "Bogotá",
+          "addressRegion": "Cundinamarca",
+          "postalCode": "110231",
+          "addressCountry": "CO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 4.711,
+          "longitude": -74.0721
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Alvaro Rubio"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "6",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "makesOffer": {
+          "@type": "Offer",
+          "name": "Página Web One-Page Profesional",
+          "description": "Incluye dominio, hosting y SSL por un año. Diseño completo profesional, SEO básico para Google, integración con WhatsApp, página web adaptable a celular, entrega en 5-7 días.",
+          "price": "300000",
+          "priceCurrency": "COP",
+          "availability": "https://schema.org/OnlineOnly",
+          "availabilityStarts": "2026-01-01",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "300000",
+            "priceCurrency": "COP"
           },
-          {
+          "itemOffered": {
             "@type": "Service",
-            "name": "Diseño de Página Web Profesional en Colombia",
-            "serviceType": "Diseño Web",
-            "provider": {
-              "@id": "https://paginawebeconomica.org/#localbusiness"
-            },
-            "description": "Diseño de página web profesional One-Page para negocios. Incluye dominio, hosting y SSL.",
-            "offers": {
-              "@type": "Offer",
-              "price": "300000",
-              "priceCurrency": "COP",
-              "priceValidUntil": "2026-12-31",
-              "availability": "https://schema.org/InStock",
-              "url": "https://paginawebeconomica.org",
-              "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "CO",
-                "returnPolicyCategory": "https://schema.org/UnspecifiedReturnPeriod",
-                "merchantReturnLink": "https://paginawebeconomica.org"
-              },
-              "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingRate": {
-                  "@type": "MonetaryAmount",
-                  "value": "0",
-                  "currency": "COP"
-                },
-                "deliveryTime": {
-                  "@type": "ShippingDeliveryTime",
-                  "handlingTime": {
-                    "@type": "QuantitativeValue",
-                    "minValue": 1,
-                    "maxValue": 7,
-                    "unitCode": "DAY"
-                  }
-                }
-              }
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "6"
-            },
-            "review": [
-              {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Carlos M." },
-                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-                "datePublished": "2026-02-10",
-                "reviewBody": "Al principio dudé por el precio, pero cumplieron con todo. Mi barbería en Chapinero ya aparece en el mapa y me han llegado clientes nuevos."
-              },
-              {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Diana Sofia R." },
-                "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-                "datePublished": "2026-01-25",
-                "reviewBody": "Necesitaba algo rápido para mi tienda de postres. En 5 días ya tenía mi catálogo montado."
-              }
-            ]
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "¿Debo pagar mensualidades?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. Nuestro modelo es de pago único. Al contratar, obtienes el 100% de la propiedad digital."
-                }
-              }
-            ]
+            "name": "Página Web One-Page Profesional",
+            "description": "Landing page rápida, moderna y diseñada para vender desde el celular. Incluye: Encabezado de alto impacto, sección Quiénes Somos, servicios, galería visual, formulario de contacto, botón WhatsApp directo, enlaces a redes sociales, dominio propio, hosting por 1 año, certificado SSL, diseño responsive y 1 correo corporativo."
           }
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios Adicionales de Diseño Web",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Catálogo Digital / Menú QR",
+              "description": "Exhibe tus productos o menú. Tus clientes eligen y te envían el pedido directo a WhatsApp. Ideal para restaurantes y catálogos.",
+              "price": "150000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Catálogo Digital / Menú QR"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Botón de Pago Online",
+              "description": "Recibe pagos con tarjeta (Wompi/PayU) directamente en tu web.",
+              "price": "120000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Botón de Pago Online"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Diseño de Logo Profesional",
+              "description": "Creamos la identidad visual de tu marca desde cero.",
+              "price": "80000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Diseño de Logo Profesional"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "SEO Google Maps Local",
+              "description": "Optimizamos tu ficha de negocio para aparecer en los mapas de tu ciudad.",
+              "price": "70000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "SEO Google Maps Local"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Entrega Express 72h",
+              "description": "Prioridad máxima. Tu página lista en 3 días hábiles.",
+              "price": "60000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Entrega Express 72h"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Email Marketing Básico",
+              "description": "Configuración de herramienta para enviar correos a tus clientes.",
+              "price": "60000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Email Marketing Básico"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Redacción Profesional",
+              "description": "Escribimos los textos persuasivos de tu web por ti.",
+              "price": "50000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Redacción Profesional"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Revisiones Adicionales",
+              "description": "Ronda extra de cambios después de la entrega final.",
+              "price": "40000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Revisiones Adicionales"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Correos Corporativos Adicionales",
+              "description": "Cuentas de email adicionales (ej: ventas@tuempresa.com).",
+              "price": "30000",
+              "priceCurrency": "COP",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Correos Corporativos Adicionales"
+              }
+            }
+          ]
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Colombia"
+        },
+        "availableLanguage": {
+          "@type": "Language",
+          "name": "Español"
+        },
+        "paymentAccepted": "Wompi, Nequi, Transferencia Bancolombia",
+        "currenciesAccepted": "COP",
+        "sameAs": [
+          "https://www.facebook.com/sormenak/",
+          "https://www.linkedin.com/in/sormenak-marketing-digital/",
+          "https://x.com/sormenak"
         ]
       }
     </script>
